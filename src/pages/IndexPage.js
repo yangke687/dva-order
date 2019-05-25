@@ -3,6 +3,7 @@ import { connect } from "dva";
 import { Layout } from "antd";
 import styles from "./IndexPage.scss";
 import NavBar from "./nav";
+import Home from "./home";
 
 const { Header, Content } = Layout;
 
@@ -12,7 +13,9 @@ function IndexPage() {
       <Header className={styles.header}>
         <NavBar />
       </Header>
-      <Content className={styles.content}>No Content</Content>
+      <Content className={styles.content}>
+        <Home />
+      </Content>
     </Layout>
   );
 }

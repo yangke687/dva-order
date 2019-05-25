@@ -10,15 +10,15 @@ export default function index() {
         defaultSelectedKeys={["home"]}
         className={styles.menu}
       >
-        <Menu.Item key="home">主页</Menu.Item>
-        <Menu.Item key="menu">菜单</Menu.Item>
-        <Menu.Item key="admin">管理</Menu.Item>
-        <Menu.Item key="about">关于</Menu.Item>
+        <Menu.Item key="home">Home</Menu.Item>
+        <Menu.Item key="menu">Menu</Menu.Item>
+        <Menu.Item key="admin">Admin</Menu.Item>
+        <Menu.Item key="about">About</Menu.Item>
         <Menu.Item key="login" className={styles.login}>
-          登录
+          Sign In
         </Menu.Item>
         <Menu.Item key="register" className={styles.reg}>
-          注册
+          Sign Up
         </Menu.Item>
       </Menu>
     </nav>
