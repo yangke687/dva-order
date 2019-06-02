@@ -1,53 +1,53 @@
 import React from "react";
 import { Router, Switch } from "dva/router";
-import IndexPage from "./pages/IndexPage";
 import RouteItem from "./utils/Router";
-import Home from "./pages/home";
-import About from "./pages/about";
-import Menu from "./pages/menu";
-import Admin from "./pages/admin";
-import Login from "./pages/user/login";
-import Reg from "./pages/user/reg";
 
 const routes = [
   {
     path: "/",
-    component: IndexPage,
+    component: () => import("./pages/IndexPage"),
     routes: [
       {
         path: "/home",
-        component: Home
+        model: [],
+        component: () => import("./pages/home")
       },
       {
         path: "/about",
-        component: About
+        model: [],
+        component: () => import("./pages/about")
       },
       {
         path: "/menu",
-        component: Menu
+        model: [],
+        component: () => import("./pages/menu")
       },
       {
         path: "/admin",
-        component: Admin
+        model: [],
+        component: () => import("./pages/admin")
       },
       {
         path: "/login",
-        component: Login
+        model: [],
+        component: () => import("./pages/user/login")
       },
       {
         path: "/register",
-        component: Reg
+        model: [],
+        component: () => import("./pages/user/reg")
       }
     ]
   }
 ];
 
-function RouterConfig({ history }) {
+function RouterConfig({ history, app }) {
+  console.log(app);
   return (
     <Router history={history}>
       <Switch>
         {routes.map((route, idx) => (
-          <RouteItem key={idx} {...route} />
+          <RouteItem key={idx} {...route} app={app} />
         ))}
       </Switch>
     </Router>
