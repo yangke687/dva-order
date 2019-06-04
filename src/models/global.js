@@ -1,7 +1,12 @@
 export default {
   namespace: "global",
 
-  state: {},
+  state: {
+    user: {
+      name: null,
+      id: null
+    }
+  },
 
   subscriptions: {
     setup({ dispatch, history }) {
