@@ -6,10 +6,11 @@ const routes = [
   {
     path: "/",
     component: () => import("./pages/IndexPage"),
+    model: [],
     routes: [
       {
         path: "/home",
-        model: [],
+        model: [import("./models/home")],
         component: () => import("./pages/home")
       },
       {
@@ -42,12 +43,12 @@ const routes = [
 ];
 
 function RouterConfig({ history, app }) {
-  console.log(app);
+  console.log("app1:", app);
   return (
     <Router history={history}>
       <Switch>
         {routes.map((route, idx) => (
-          <RouteItem key={idx} {...route} app={app} />
+          <RouteItem key={idx} app={app} {...route} />
         ))}
       </Switch>
     </Router>

@@ -9,7 +9,7 @@ import { Switch, Route, Redirect } from "react-router";
 const { Header, Content } = Layout;
 
 function IndexPage(props) {
-  const { routes } = props;
+  const { routes, app } = props;
   return (
     <Layout className={styles.layout}>
       <Header className={styles.header}>
@@ -18,7 +18,7 @@ function IndexPage(props) {
       <Content className={styles.content}>
         <Switch>
           {routes.map((route, idx) => (
-            <RouteItem key={idx} {...route} />
+            <RouteItem key={idx} {...route} app={app} />
           ))}
           <Redirect exact={true} from="/" to="/home" />
           <Route render={props => <dvi>404</dvi>} />
