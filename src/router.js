@@ -28,7 +28,19 @@ const routes = [
           {
             path: "/about/contact",
             model: [],
-            component: () => import("./pages/about/Contact")
+            component: () => import("./pages/about/Contact"),
+            routes: [
+              {
+                path: "/about/contact/phone",
+                model: [],
+                component: () => import("./pages/about/ContactPhone")
+              },
+              {
+                path: "/about/contact/address",
+                model: [],
+                component: () => import("./pages/about/ContactAddr")
+              }
+            ]
           },
           {
             path: "/about/delivery",
@@ -71,7 +83,7 @@ const routes = [
 ];
 
 function RouterConfig({ history, app }) {
-  console.log("app1:", app);
+  // console.log("app1:", app);
   return (
     <Router history={history}>
       <Switch>
