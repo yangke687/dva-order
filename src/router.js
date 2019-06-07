@@ -18,7 +18,29 @@ const routes = [
         path: "/about",
         model: [],
         component: () => import("./pages/about"),
-        auth: true
+        auth: true,
+        routes: [
+          {
+            path: "/about/history",
+            model: [],
+            component: () => import("./pages/about/History")
+          },
+          {
+            path: "/about/contact",
+            model: [],
+            component: () => import("./pages/about/Contact")
+          },
+          {
+            path: "/about/delivery",
+            model: [],
+            component: () => import("./pages/about/Delivery")
+          },
+          {
+            path: "/about/guide",
+            model: [],
+            component: () => import("./pages/about/Guide")
+          }
+        ]
       },
       {
         path: "/menu",

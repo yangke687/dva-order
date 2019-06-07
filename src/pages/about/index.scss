@@ -1,0 +1,9 @@
+.root{
+  display: flex;
+  .tabs{
+    flex-basis: 150px;
+  }
+  .routes{
+    flex: 1;
+  }
+}

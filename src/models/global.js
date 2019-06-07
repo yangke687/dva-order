@@ -4,7 +4,7 @@ export default {
   state: {
     user: {
       name: null,
-      id: null
+      id: 1
     }
   },
 
