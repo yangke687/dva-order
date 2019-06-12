@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Message } from 'antd';
+import { connect } from 'dva';
 import Icon from 'Assets/icon.png';
 import styles from './index.scss';
 import { pwd } from '../../utils/Validators';
 import Request from '../../utils/request';
 
+@connect()
 class login extends Component {
   regexValidate(rule, value, cb) {
     if (value && rule.pattern && !value.match(rule.pattern)) {
@@ -37,6 +39,17 @@ class login extends Component {
             );
             /** store userInfo */
             if (users && users.length) {
+              const { dispatch, history } = this.props;
+              dispatch({
+                type: 'global/setUser',
+                payload: {
+                  email: users[0].email,
+                  id: users[0].id
+                }
+              });
+              history.push('/');
+            } else {
+              Message.error('invalid account');
             }
           }
         });

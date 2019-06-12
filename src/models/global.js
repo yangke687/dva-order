@@ -1,29 +1,31 @@
 export default {
-  namespace: "global",
+  namespace: 'global',
 
   state: {
     user: {
-      name: null,
-      id: 1
+      email: null,
+      id: null
     }
   },
 
-  subscriptions: {
-    setup({ dispatch, history }) {
-      // eslint-disable-line
-    }
-  },
+  subscriptions: {},
 
   effects: {
     *fetch({ payload }, { call, put }) {
       // eslint-disable-line
-      yield put({ type: "save" });
+      yield put({ type: 'save' });
     }
   },
 
   reducers: {
-    save(state, action) {
-      return { ...state, ...action.payload };
+    setUser(state, action) {
+      return {
+        ...state,
+        user: {
+          email: action.payload.email,
+          id: action.payload.id
+        }
+      };
     }
   }
 };
