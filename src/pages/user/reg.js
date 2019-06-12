@@ -3,6 +3,7 @@ import { Form, Input, Button } from 'antd';
 import Icon from 'Assets/icon.png';
 import styles from './index.scss';
 import { pwd } from '../../utils/Validators';
+import Request from '../../utils/request';
 
 class reg extends Component {
   regexValidate(rule, value, cb) {
@@ -18,6 +19,25 @@ class reg extends Component {
     } else {
       cb();
     }
+  };
+  submit = e => {
+    e.preventDefault();
+    const {
+      form: { validateFields }
+    } = this.props;
+    validateFields((err, values) => {
+      const { email, pwd } = values;
+      if (!err) {
+        Request('/users.json', {
+          method: 'post',
+          data: { email, pwd }
+        }).then(res => {
+          if (res.status === 200 && res.data) {
+            this.props.history.push('/login');
+          }
+        });
+      }
+    });
   };
   render() {
     const {
@@ -76,8 +96,8 @@ class reg extends Component {
             })(<Input type="password" />)}
           </Form.Item>
           <Form.Item>
-            <Button className="btn" type="primary">
-              注册
+            <Button className="btn" type="primary" onClick={this.submit}>
+              Sign Up
             </Button>
           </Form.Item>
         </Form>

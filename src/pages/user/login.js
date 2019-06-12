@@ -17,7 +17,7 @@ export default class login extends Component {
           </Form.Item>
           <Form.Item>
             <Button className="btn" type="primary">
-              注册
+              Sign In
             </Button>
           </Form.Item>
         </Form>
