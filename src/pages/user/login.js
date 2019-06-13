@@ -39,6 +39,10 @@ class login extends Component {
             );
             /** store userInfo */
             if (users && users.length) {
+              /** store user into localStorage */
+              localStorage.setItem('email', users[0].email);
+              localStorage.setItem('id', users[0].id);
+
               const { dispatch, history } = this.props;
               dispatch({
                 type: 'global/setUser',

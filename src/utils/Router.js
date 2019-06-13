@@ -1,7 +1,7 @@
-import React from "react";
-import dynamic from "dva/dynamic";
-import { connect } from "dva";
-import { Route, Redirect } from "dva/router";
+import React from 'react';
+import dynamic from 'dva/dynamic';
+import { connect } from 'dva';
+import { Route, Redirect } from 'dva/router';
 
 const DynamicComp = (app, models, component, routes, auth, user) => {
   // console.log("app3:", app);
@@ -10,7 +10,7 @@ const DynamicComp = (app, models, component, routes, auth, user) => {
     models: () => models,
     component: () =>
       component().then(res => {
-        if (auth && !user.id) {
+        if (auth && !(localStorage.id || localStorage.email)) {
           return () => <Redirect to="/login" />;
         }
         const Component = res.default || res;
