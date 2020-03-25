@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu } from 'antd';
+import { Dropdown, Menu, Icon } from 'antd';
 import { Link } from 'dva/router';
 import styles from './index.scss';
 
@@ -62,13 +62,28 @@ export default function index(props) {
     };
   }, [props.location.pathname]);
 
+  const logout = ({ key }) => {
+    if (key === 'logout') {
+      window.localStorage.clear();
+      props.history.push('/');
+    }
+  }
+
+  const menu = (
+    <Menu onClick={logout}>
+      <Menu.Item key="logout">
+        <span>Logout</span>
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
-    <nav>
+    <nav className={styles.header}>
       <Menu
         mode="horizontal"
         defaultSelectedKeys={['home']}
         selectedKeys={selectedKeys}
-        className={styles.menu}
+        className={styles['menu-left']}
       >
         {menus
           .filter(({ hidden }) => !hidden)
@@ -80,8 +95,8 @@ export default function index(props) {
                   key === 'login'
                     ? styles.login
                     : key === 'register'
-                    ? styles.reg
-                    : null
+                      ? styles.reg
+                      : null
                 }
               >
                 <Link to={path}>{name}</Link>
@@ -89,6 +104,14 @@ export default function index(props) {
             );
           })}
       </Menu>
+      {localStorage.email && localStorage.id && (
+        <Dropdown overlay={menu} className={styles['dropdown-menu']}>
+          <a className="ant-dropdown-link">
+            <span className={styles.email}>{localStorage.email}</span>
+            <Icon className={styles.icon} type="down" />
+          </a>
+        </Dropdown>
+      )}
     </nav>
   );
 }

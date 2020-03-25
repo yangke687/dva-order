@@ -35,7 +35,7 @@ class login extends Component {
             }
             /** validate */
             users = users.filter(
-              user => user.email === email && user.pwd === pwd
+              user => user.email === email && user.password === pwd
             );
             /** store userInfo */
             if (users && users.length) {
